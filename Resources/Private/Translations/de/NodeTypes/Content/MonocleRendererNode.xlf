@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" source-language="en" datatype="plaintext" target-language="de">
+        <body>
+            <trans-unit id="ui.label" xml:space="preserve">
+                <source>Monocle Renderer</source>
+                <target xml:lang="de" state="translated">Monocle Renderer</target>
+            </trans-unit>
+            <trans-unit id="creationDialog.prototypeName" xml:space="preserve">
+                <source>Prototype Name</source>
+                <target xml:lang="de" state="translated">Prototype Name</target>
+            </trans-unit>
+            <trans-unit id="properties.prototypeName" xml:space="preserve">
+                <source>Prototype Name</source>
+                <target xml:lang="de" state="translated">Prototype Name</target>
+            </trans-unit>
+            <trans-unit id="properties.json" xml:space="preserve">
+                <source>Prototype Props as JSON</source>
+                <target xml:lang="de" state="translated">Prototype Props als JSON</target>
+            </trans-unit>
+            <trans-unit id="properties.json.codeEditor.buttonLabel" xml:space="preserve">
+                <source>Edit Props</source>
+                <target xml:lang="de" state="translated">Props bearbeiten</target>
+            </trans-unit>
+            <trans-unit id="groups.htmlwidget" xml:space="preserve">
+                <source>Settings</source>
+                <target xml:lang="de" state="translated">Einstellungen</target>
+            </trans-unit>
+
+            <trans-unit id="noPrototypeNameNotice" xml:space="preserve">
+                <source>Please define a prototype name to render.</source>
+                <target xml:lang="de" state="translated">Bitte gib einen Prototype-Namen ein.</target>
+            </trans-unit>
+            <trans-unit id="jsonIsInvalidNotice" xml:space="preserve">
+                <source>Your JSON for the Prototype props is invalid</source>
+                <target xml:lang="de" state="translated">Das Prototype-Props JSON ist ungültig.</target>
+            </trans-unit>
+            <trans-unit id="prototypeDoesNotExistNotice" xml:space="preserve">
+                <source>The Prototype does not exist.</source>
+                <target xml:lang="de" state="translated">Der Prototype existiert nicht.</target>
+            </trans-unit>
+        </body>
+ </file>
+</xliff>

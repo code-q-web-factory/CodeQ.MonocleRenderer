@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" source-language="en" datatype="plaintext" target-language="de">
+        <body>
+            <trans-unit id="ui.label" xml:space="preserve">
+                <source>Monocle Renderer</source>
+            </trans-unit>
+            <trans-unit id="creationDialog.prototypeName" xml:space="preserve">
+                <source>Prototype Name</source>
+            </trans-unit>
+            <trans-unit id="properties.prototypeName" xml:space="preserve">
+                <source>Prototype Name</source>
+            </trans-unit>
+            <trans-unit id="properties.json" xml:space="preserve">
+                <source>Prototype Props as JSON</source>
+            </trans-unit>
+            <trans-unit id="properties.json.codeEditor.buttonLabel" xml:space="preserve">
+                <source>Edit Props</source>
+            </trans-unit>
+            <trans-unit id="groups.htmlwidget" xml:space="preserve">
+                <source>Settings</source>
+            </trans-unit>
+
+            <trans-unit id="noPrototypeNameNotice" xml:space="preserve">
+                <source>Please define a prototype name to render.</source>
+            </trans-unit>
+            <trans-unit id="jsonIsInvalidNotice" xml:space="preserve">
+                <source>Your JSON for the Prototype props is invalid</source>
+            </trans-unit>
+            <trans-unit id="prototypeDoesNotExistNotice" xml:space="preserve">
+                <source>The Prototype does not exist.</source>
+            </trans-unit>
+        </body>
+ </file>
+</xliff>

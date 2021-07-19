@@ -1,0 +1,55 @@
+'CodeQ.NeosMonocleRenderer:Content.MonocleRendererNode':
+  label: "${String.trim(String.substr(q(node).property('prototypeName'), String.lastIndexOf(q(node).property('prototypeName'), '.') + 1))}"
+  superTypes:
+    'Neos.Neos:Content': true
+  ui:
+    label: i18n
+    icon: 'icon-code'
+    position: 900
+    inspector:
+      groups:
+        prototype:
+          label: i18n
+          icon: 'icon-cogs'
+          position: 10
+    creationDialog:
+      elements:
+        prototypeName:
+          type: string
+          ui:
+            label: i18n
+            editor: 'Content/Inspector/Editors/SelectBoxEditor'
+            editorOptions:
+              dataSourceIdentifier: 'codeq-neosmonoclerenderer-nodetype'
+          validation:
+            'Neos.Neos/Validation/NotEmptyValidator': []
+  options:
+    template:
+      properties:
+        prototypeName: '${data.prototypeName}'
+  properties:
+    prototypeName:
+      type: string
+      ui:
+        label: i18n
+        reloadIfChanged: true
+        reloadPageIfChanged: true
+        inspector:
+          group: 'prototype'
+          editor: 'Content/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            dataSourceIdentifier: 'codeq-neosmonoclerenderer-nodetype'
+      validation:
+        'Neos.Neos/Validation/NotEmptyValidator': []
+    json:
+      type: string
+      defaultValue: '{}'
+      ui:
+        label: i18n
+        reloadIfChanged: true
+        inspector:
+          group: 'prototype'
+          editor: 'Neos.Neos/Inspector/Editors/CodeEditor'
+          editorOptions:
+            buttonLabel: i18n
+            highlightingMode: 'text/json'

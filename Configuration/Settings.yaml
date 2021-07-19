@@ -1,0 +1,13 @@
+
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        CodeQ.NeosMonocleRenderer: true
+    userInterface:
+      translation:
+        autoInclude:
+          CodeQ.NeosMonocleRenderer:
+            - 'Fusion/*'
+            - 'NodeTypes/*'
+

@@ -1,0 +1,53 @@
+prototype(CodeQ.NeosMonocleRenderer:Content.MonocleRendererNode) < prototype(Neos.Neos:ContentComponent) {
+	@context {
+		prototypeName = ${String.trim(q(node).property('prototypeName'))}
+		prototypeProps = ${Json.parse(q(node).property('json') || '{}')}
+	}
+
+	renderer = Neos.Fusion:Case {
+		noPrototypeName {
+			condition = ${!prototypeName && node.context.inBackend}
+			renderer = CodeQ.PrototypeRendererNode:Content.PrototypeRendererNode.ErrorMessage {
+				name = 'noPrototypeNameNotice'
+			}
+		}
+//		jsonIsInvalid {
+//			condition = ${!prototypeProps && node.context.inBackend}
+//			renderer = Neos.Fusion:Debug {
+//				foo = ${prototypeProps}
+//			}
+////			renderer = CodeQ.PrototypeRendererNode:Content.PrototypeRendererNode.ErrorMessage {
+////				name = 'jsonIsInvalidNotice'
+////			}
+//		}
+		canRender {
+			condition = Neos.Fusion:CanRender {
+				type = ${prototypeName}
+			}
+			renderer = Neos.Fusion:Renderer {
+				type = ${prototypeName}
+	            element.@apply.props = ${prototypeProps}
+			}
+		}
+		prototypeDoesNotExist {
+			condition = ${node.context.inBackend}
+			renderer = CodeQ.PrototypeRendererNode:Content.PrototypeRendererNode.ErrorMessage {
+				name = 'prototypeDoesNotExistNotice'
+			}
+		}
+		frontend {
+			condition = true
+			renderer = false
+		}
+	}
+}
+
+prototype(CodeQ.PrototypeRendererNode:Content.PrototypeRendererNode.ErrorMessage) < prototype(Neos.Fusion:Component) {
+	name = ''
+
+	renderer = afx`
+		<div style="display: block; padding: 2rem; background: red; font-size: 2rem;">
+			{I18n.translate('CodeQ.PrototypeRendererNode:NodeTypes.Content.PrototypeRendererNode:' + props.name)}
+		</div>
+	`
+}

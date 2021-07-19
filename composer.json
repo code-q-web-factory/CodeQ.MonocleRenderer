@@ -1,0 +1,39 @@
+{
+    "name": "codeq/neos-monocle-renderer",
+    "description": "Monocle Renderer Content Node for Neos CMS",
+    "type": "neos-package",
+    "license": "MIT",
+    "keywords": ["flow", "neos", "fusion", "html"],
+    "require": {
+        "neos/neos": "~3.2 || ~4.0 ||  ~5.0 || ~7.0 || dev-master",
+        "neos/fusion-afx": "^1.0 ||~7.0 ||  dev-master",
+        "flowpack/nodetemplates": "~1.0 || dev-master",
+        "sitegeist/monocle": "^7.5"
+    },
+    "authors": [
+        {
+            "name": "Felix Gradinaru",
+            "email": "fg@codeq.at",
+            "homepage": "https://codeq.at",
+            "role": "Developer"
+        }
+    ],
+    "archive": {
+        "exclude": [
+            ".editorconfig",
+            ".gitattributes",
+            ".github",
+            ".gitignore"
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "CodeQ\\NeosMonocleRenderer\\": "Classes"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "CodeQ.NeosMonocleRenderer"
+        }
+    }
+}
