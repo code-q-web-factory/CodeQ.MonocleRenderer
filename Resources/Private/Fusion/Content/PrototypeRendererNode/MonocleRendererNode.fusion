@@ -1,6 +1,7 @@
 prototype(CodeQ.MonocleRenderer:Content.MonocleRendererNode) < prototype(Neos.Neos:ContentComponent) {
 	@context {
 		prototypeName = ${String.trim(q(node).property('prototypeName'))}
+        useStyleguideProps = ${q(node).property('useStyleguideProps')}
 		prototypeProps = ${Json.parse(q(node).property('json') || '{}')}
 	}
 
@@ -11,16 +12,22 @@ prototype(CodeQ.MonocleRenderer:Content.MonocleRendererNode) < prototype(Neos.Ne
 				name = 'noPrototypeNameNotice'
 			}
 		}
-//		jsonIsInvalid {
-//			condition = ${!prototypeProps && node.context.inBackend}
-//			renderer = Neos.Fusion:Debug {
-//				foo = ${prototypeProps}
-//			}
-////			renderer = CodeQ.PrototypeRendererNode:Content.PrototypeRendererNode.ErrorMessage {
-////				name = 'jsonIsInvalidNotice'
-////			}
-//		}
-		canRender {
+        canRenderWithStyleguideProps {
+            condition = Neos.Fusion:CanRender {
+                type = ${prototypeName}
+                @process.andIs = ${value && useStyleguideProps}
+            }
+            renderer = Sitegeist.Monocle:Preview.Prototype {
+                prototypeName = ${prototypeName}
+            }
+        }
+        jsonIsInvalid {
+            condition = ${Type.getType(prototypeProps) != 'array' && node.context.inBackend}
+            renderer = CodeQ.PrototypeRendererNode:Content.PrototypeRendererNode.ErrorMessage {
+                name = 'jsonIsInvalidNotice'
+            }
+        }
+		canRenderWithJson {
 			condition = Neos.Fusion:CanRender {
 				type = ${prototypeName}
 			}
@@ -35,9 +42,9 @@ prototype(CodeQ.MonocleRenderer:Content.MonocleRendererNode) < prototype(Neos.Ne
 				name = 'prototypeDoesNotExistNotice'
 			}
 		}
-		frontend {
+		frontendEmpty {
 			condition = true
-			renderer = false
+			renderer = ''
 		}
 	}
 }
@@ -47,7 +54,7 @@ prototype(CodeQ.PrototypeRendererNode:Content.PrototypeRendererNode.ErrorMessage
 
 	renderer = afx`
 		<div style="display: block; padding: 2rem; background: red; font-size: 2rem;">
-			{I18n.translate('CodeQ.PrototypeRendererNode:NodeTypes.Content.PrototypeRendererNode:' + props.name)}
+			{I18n.translate('CodeQ.MonocleRenderer:NodeTypes.Content.MonocleRendererNode:' + props.name)}
 		</div>
 	`
 }

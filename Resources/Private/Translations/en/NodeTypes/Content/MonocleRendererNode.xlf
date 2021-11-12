@@ -11,8 +11,11 @@
             <trans-unit id="properties.prototypeName" xml:space="preserve">
                 <source>Prototype Name</source>
             </trans-unit>
+            <trans-unit id="properties.useStyleguideProps" xml:space="preserve">
+                <source>Use styleguide props</source>
+            </trans-unit>
             <trans-unit id="properties.json" xml:space="preserve">
-                <source>Prototype Props as JSON</source>
+                <source>Props as JSON</source>
             </trans-unit>
             <trans-unit id="properties.json.codeEditor.buttonLabel" xml:space="preserve">
                 <source>Edit Props</source>

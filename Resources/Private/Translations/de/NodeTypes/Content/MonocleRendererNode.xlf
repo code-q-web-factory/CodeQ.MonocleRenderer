@@ -14,9 +14,13 @@
                 <source>Prototype Name</source>
                 <target xml:lang="de" state="translated">Prototype Name</target>
             </trans-unit>
+            <trans-unit id="properties.useStyleguideProps" xml:space="preserve">
+                <source>Use styleguide props</source>
+                <target xml:lang="de" state="translated">Styleguide props verwenden</target>
+            </trans-unit>
             <trans-unit id="properties.json" xml:space="preserve">
-                <source>Prototype Props as JSON</source>
-                <target xml:lang="de" state="translated">Prototype Props als JSON</target>
+                <source>Props as JSON</source>
+                <target xml:lang="de" state="translated">Props als JSON</target>
             </trans-unit>
             <trans-unit id="properties.json.codeEditor.buttonLabel" xml:space="preserve">
                 <source>Edit Props</source>

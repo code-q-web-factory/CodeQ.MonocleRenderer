@@ -35,12 +35,22 @@
         reloadIfChanged: true
         reloadPageIfChanged: true
         inspector:
-          group: 'prototype'
+          group: prototype
+          position: 100
           editor: 'Content/Inspector/Editors/SelectBoxEditor'
           editorOptions:
             dataSourceIdentifier: 'codeq-monoclerenderer-nodetype'
       validation:
         'Neos.Neos/Validation/NotEmptyValidator': []
+    useStyleguideProps:
+      type: boolean
+      defaultValue: true
+      ui:
+        label: i18n
+        reloadIfChanged: true
+        inspector:
+          group: prototype
+          position: 200
     json:
       type: string
       defaultValue: '{}'
@@ -48,7 +58,9 @@
         label: i18n
         reloadIfChanged: true
         inspector:
-          group: 'prototype'
+          group: prototype
+          hidden: 'ClientEval:node.properties.useStyleguideProps ? true : false'
+          position: 300
           editor: 'Neos.Neos/Inspector/Editors/CodeEditor'
           editorOptions:
             buttonLabel: i18n
