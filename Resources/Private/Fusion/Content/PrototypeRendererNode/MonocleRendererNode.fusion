@@ -1,4 +1,4 @@
-prototype(CodeQ.NeosMonocleRenderer:Content.MonocleRendererNode) < prototype(Neos.Neos:ContentComponent) {
+prototype(CodeQ.MonocleRenderer:Content.MonocleRendererNode) < prototype(Neos.Neos:ContentComponent) {
 	@context {
 		prototypeName = ${String.trim(q(node).property('prototypeName'))}
 		prototypeProps = ${Json.parse(q(node).property('json') || '{}')}

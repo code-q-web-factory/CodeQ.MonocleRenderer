@@ -1,56 +1,56 @@
-# restrict creation and editing of `CodeQ.NeosMonocleRenderer:Content.PrototypeRendererNode` nodetype to non-admins
+# restrict creation and editing of `CodeQ.MonocleRenderer:Content.PrototypeRendererNode` nodetype to non-admins
 privilegeTargets:
   'Neos\ContentRepository\Security\Authorization\Privilege\Node\CreateNodePrivilege':
-    'CodeQ.NeosMonocleRenderer:CreatePrototypeRendererNode':
+    'CodeQ.MonocleRenderer:CreatePrototypeRendererNode':
       label: 'Create a new PrototypeRendererNode'
-      matcher: 'createdNodeIsOfType("CodeQ.NeosMonocleRenderer:Content.PrototypeRendererNode")'
+      matcher: 'createdNodeIsOfType("CodeQ.MonocleRenderer:Content.PrototypeRendererNode")'
   'Neos\ContentRepository\Security\Authorization\Privilege\Node\EditNodePrivilege':
-    'CodeQ.NeosMonocleRenderer:EditPrototypeRendererNode':
+    'CodeQ.MonocleRenderer:EditPrototypeRendererNode':
       label: 'Edit a PrototypeRendererNode'
-      matcher: 'nodeIsOfType("CodeQ.NeosMonocleRenderer:Content.PrototypeRendererNode")'
+      matcher: 'nodeIsOfType("CodeQ.MonocleRenderer:Content.PrototypeRendererNode")'
   'Neos\ContentRepository\Security\Authorization\Privilege\Node\RemoveNodePrivilege':
-    'CodeQ.NeosMonocleRenderer:RemovePrototypeRendererNode':
+    'CodeQ.MonocleRenderer:RemovePrototypeRendererNode':
       label: 'Remove a PrototypeRendererNode'
-      matcher: 'nodeIsOfType("CodeQ.NeosMonocleRenderer:Content.PrototypeRendererNode")'
+      matcher: 'nodeIsOfType("CodeQ.MonocleRenderer:Content.PrototypeRendererNode")'
   'Neos\ContentRepository\Security\Authorization\Privilege\Node\EditNodePropertyPrivilege':
-    'CodeQ.NeosMonocleRenderer:EditPrototypeRendererNodeProperty':
+    'CodeQ.MonocleRenderer:EditPrototypeRendererNodeProperty':
       label: 'Edit a PrototypeRendererNode property'
-      matcher: 'nodeIsOfType("CodeQ.NeosMonocleRenderer:Content.PrototypeRendererNode")'
+      matcher: 'nodeIsOfType("CodeQ.MonocleRenderer:Content.PrototypeRendererNode")'
 
 roles:
   ##
   # By default this role is abstract, feel free to use it however you want.
   # This role is considered public API
   ##
-  'CodeQ.NeosMonocleRenderer:PrototypeRendererNodeEditor':
+  'CodeQ.MonocleRenderer:PrototypeRendererNodeEditor':
     abstract: true
     label: 'Prototype Renderer Node Editor'
     description: 'A user with this role is able to render any Prototype as content node.'
     privileges:
       -
-        privilegeTarget: 'CodeQ.NeosMonocleRenderer:CreatePrototypeRendererNode'
+        privilegeTarget: 'CodeQ.MonocleRenderer:CreatePrototypeRendererNode'
         permission: GRANT
       -
-        privilegeTarget: 'CodeQ.NeosMonocleRenderer:EditPrototypeRendererNode'
+        privilegeTarget: 'CodeQ.MonocleRenderer:EditPrototypeRendererNode'
         permission: GRANT
       -
-        privilegeTarget: 'CodeQ.NeosMonocleRenderer:RemovePrototypeRendererNode'
+        privilegeTarget: 'CodeQ.MonocleRenderer:RemovePrototypeRendererNode'
         permission: GRANT
       -
-        privilegeTarget: 'CodeQ.NeosMonocleRenderer:EditPrototypeRendererNodeProperty'
+        privilegeTarget: 'CodeQ.MonocleRenderer:EditPrototypeRendererNodeProperty'
         permission: GRANT
 
   'Neos.Neos:Administrator':
     privileges:
       -
-        privilegeTarget: 'CodeQ.NeosMonocleRenderer:CreatePrototypeRendererNode'
+        privilegeTarget: 'CodeQ.MonocleRenderer:CreatePrototypeRendererNode'
         permission: GRANT
       -
-        privilegeTarget: 'CodeQ.NeosMonocleRenderer:EditPrototypeRendererNode'
+        privilegeTarget: 'CodeQ.MonocleRenderer:EditPrototypeRendererNode'
         permission: GRANT
       -
-        privilegeTarget: 'CodeQ.NeosMonocleRenderer:RemovePrototypeRendererNode'
+        privilegeTarget: 'CodeQ.MonocleRenderer:RemovePrototypeRendererNode'
         permission: GRANT
       -
-        privilegeTarget: 'CodeQ.NeosMonocleRenderer:EditPrototypeRendererNodeProperty'
+        privilegeTarget: 'CodeQ.MonocleRenderer:EditPrototypeRendererNodeProperty'
         permission: GRANT

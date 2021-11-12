@@ -1,6 +1,6 @@
 {
-    "name": "codeq/neos-monocle-renderer",
-    "description": "Monocle Renderer Content Node for Neos CMS",
+    "name": "codeq/monocle-renderer",
+    "description": "Monocle Renderer Content NodeType for Neos CMS",
     "type": "neos-package",
     "license": "MIT",
     "keywords": ["flow", "neos", "fusion", "html"],
@@ -28,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "CodeQ\\NeosMonocleRenderer\\": "Classes"
+            "CodeQ\\MonocleRenderer\\": "Classes"
         }
     },
     "extra": {
         "neos": {
-            "package-key": "CodeQ.NeosMonocleRenderer"
+            "package-key": "CodeQ.MonocleRenderer"
         }
     }
 }

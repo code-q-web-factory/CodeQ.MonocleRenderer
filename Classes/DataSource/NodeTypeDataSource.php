@@ -1,7 +1,7 @@
 <?php
 
 
-namespace CodeQ\NeosMonocleRenderer\DataSource;
+namespace CodeQ\MonocleRenderer\DataSource;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\ContentRepository\Domain\Model\NodeInterface;
@@ -14,7 +14,7 @@ class NodeTypeDataSource extends AbstractDataSource
     /**
      * @var string
      */
-    static protected $identifier = 'codeq-neosmonoclerenderer-nodetype';
+    static protected $identifier = 'codeq-monoclerenderer-nodetype';
 
     /**
      * @Flow\Inject

@@ -1,4 +1,4 @@
-'CodeQ.NeosMonocleRenderer:Content.MonocleRendererNode':
+'CodeQ.MonocleRenderer:Content.MonocleRendererNode':
   label: "${String.trim(String.substr(q(node).property('prototypeName'), String.lastIndexOf(q(node).property('prototypeName'), '.') + 1))}"
   superTypes:
     'Neos.Neos:Content': true
@@ -20,7 +20,7 @@
             label: i18n
             editor: 'Content/Inspector/Editors/SelectBoxEditor'
             editorOptions:
-              dataSourceIdentifier: 'codeq-neosmonoclerenderer-nodetype'
+              dataSourceIdentifier: 'codeq-monoclerenderer-nodetype'
           validation:
             'Neos.Neos/Validation/NotEmptyValidator': []
   options:
@@ -38,7 +38,7 @@
           group: 'prototype'
           editor: 'Content/Inspector/Editors/SelectBoxEditor'
           editorOptions:
-            dataSourceIdentifier: 'codeq-neosmonoclerenderer-nodetype'
+            dataSourceIdentifier: 'codeq-monoclerenderer-nodetype'
       validation:
         'Neos.Neos/Validation/NotEmptyValidator': []
     json:
