@@ -3,40 +3,62 @@
 
 namespace CodeQ\MonocleRenderer\DataSource;
 
+use Neos\ContentRepository\Core\NodeType\NodeTypeNames;
+use Neos\ContentRepository\Core\Projection\ContentGraph\Filter\FindClosestNodeFilter;
+use Neos\ContentRepository\Core\Projection\ContentGraph\Filter\NodeType\NodeTypeCriteria;
+use Neos\ContentRepository\Core\Projection\ContentGraph\Node;
+use Neos\ContentRepositoryRegistry\ContentRepositoryRegistry;
 use Neos\Flow\Annotations as Flow;
-use Neos\ContentRepository\Domain\Model\NodeInterface;
+use Neos\Neos\Domain\Model\Site;
+use Neos\Neos\Domain\Repository\SiteRepository;
 use Neos\Neos\Service\DataSource\AbstractDataSource;
 use Sitegeist\Monocle\Fusion\FusionService;
 use Sitegeist\Monocle\Service\ConfigurationService;
 
 class NodeTypeDataSource extends AbstractDataSource
 {
-    /**
-     * @var string
-     */
     static protected $identifier = 'codeq-monoclerenderer-nodetype';
 
-    /**
-     * @Flow\Inject
-     * @var FusionService
-     */
-    protected $fusionService;
+    #[Flow\Inject]
+    protected FusionService $fusionService;
+
+    #[Flow\Inject]
+    protected ConfigurationService $configurationService;
+
+    #[Flow\Inject]
+    protected ContentRepositoryRegistry $contentRepositoryRegistry;
+
+    #[Flow\Inject]
+    protected SiteRepository $siteRepository;
 
     /**
-     * @Flow\Inject
-     * @var ConfigurationService
-     */
-    protected $configurationService;
-
-    /**
-     * @param NodeInterface|null $node
-     * @param array              $arguments
-     *
+     * @param  Node|null  $node
+     * @param  array  $arguments
      * @return array
+     * @throws \Neos\Neos\Domain\Exception
      */
-    public function getData(NodeInterface $node = null, array $arguments = []): array
+    public function getData(Node $node = null, array $arguments = []): array
     {
-        $sitePackageKey = $node->getContext()->getCurrentSite()->getSiteResourcesPackageKey();
+        if ($node === null) {
+            return [];
+        }
+
+        $contentSubgraph = $this->contentRepositoryRegistry->subgraphForNode($node);
+        $siteNode = $contentSubgraph->findClosestNode(
+            $node->aggregateId,
+            FindClosestNodeFilter::create(
+                NodeTypeCriteria::createWithAllowedNodeTypeNames(
+                    NodeTypeNames::fromStringArray(['Neos.Neos:Site']))
+            )
+        );
+
+        if ($siteNode === null) {
+            return [];
+        }
+
+        /** @var Site $site */
+        $site = $this->siteRepository->findByNodeName($siteNode->name)->getFirst();
+        $sitePackageKey = $site->getSiteResourcesPackageKey();
 
         $data = [];
         foreach($this->getStyleguideObjects($sitePackageKey) as $prototypeName => $styleguideObject) {
@@ -51,14 +73,13 @@ class NodeTypeDataSource extends AbstractDataSource
     }
 
     /**
-     * @param $sitePackageKey
-     * @param $styleguideObject
+     * @param  string  $sitePackageKey
      * @return array
      * @throws \Neos\Neos\Domain\Exception
      */
-    protected function getStyleguideObjects($sitePackageKey): array
+    protected function getStyleguideObjects(string $sitePackageKey): array
     {
-        $fusionAst = $this->fusionService->getMergedFusionObjectTreeForSitePackage($sitePackageKey);
+        $fusionAst = $this->fusionService->getFusionConfigurationForPackageKey($sitePackageKey);
         $styleguideObjects = $this->fusionService->getStyleguideObjectsFromFusionAst($fusionAst);
         $prototypeStructures = $this->configurationService->getSiteConfiguration($sitePackageKey, 'ui.structure');
 
@@ -72,7 +93,7 @@ class NodeTypeDataSource extends AbstractDataSource
             foreach ($hiddenPrototypeNamePatterns as $pattern) {
                 $styleguideObjects = array_filter(
                     $styleguideObjects,
-                    function ($prototypeName) use ($pattern, $alwaysShowPrototypes) {
+                    static function ($prototypeName) use ($pattern, $alwaysShowPrototypes) {
                         if (in_array($prototypeName, $alwaysShowPrototypes, true)) {
                             return true;
                         }
@@ -88,11 +109,11 @@ class NodeTypeDataSource extends AbstractDataSource
     /**
      * Find the matching structure for a prototype
      *
-     * @param $prototypeStructures
-     * @param $prototypeName
+     * @param  array  $prototypeStructures
+     * @param  string  $prototypeName
      * @return array
      */
-    protected function getStructureForPrototypeName($prototypeStructures, $prototypeName)
+    protected function getStructureForPrototypeName(array $prototypeStructures, string $prototypeName): array
     {
         foreach ($prototypeStructures as $structure) {
             if (preg_match(sprintf('!%s!', $structure['match']), $prototypeName)) {

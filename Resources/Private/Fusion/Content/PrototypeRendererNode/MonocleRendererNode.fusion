@@ -7,7 +7,7 @@ prototype(CodeQ.MonocleRenderer:Content.MonocleRendererNode) < prototype(Neos.Ne
 
 	renderer = Neos.Fusion:Case {
 		noPrototypeName {
-			condition = ${!prototypeName && node.context.inBackend}
+			condition = ${!prototypeName && renderingMode.isEdit}
 			renderer = CodeQ.PrototypeRendererNode:Content.PrototypeRendererNode.ErrorMessage {
 				name = 'noPrototypeNameNotice'
 			}
@@ -22,7 +22,7 @@ prototype(CodeQ.MonocleRenderer:Content.MonocleRendererNode) < prototype(Neos.Ne
             }
         }
         jsonIsInvalid {
-            condition = ${Type.getType(prototypeProps) != 'array' && node.context.inBackend}
+            condition = ${Type.getType(prototypeProps) != 'array' && renderingMode.isEdit}
             renderer = CodeQ.PrototypeRendererNode:Content.PrototypeRendererNode.ErrorMessage {
                 name = 'jsonIsInvalidNotice'
             }
@@ -37,7 +37,7 @@ prototype(CodeQ.MonocleRenderer:Content.MonocleRendererNode) < prototype(Neos.Ne
 			}
 		}
 		prototypeDoesNotExist {
-			condition = ${node.context.inBackend}
+			condition = ${renderingMode.isEdit}
 			renderer = CodeQ.PrototypeRendererNode:Content.PrototypeRendererNode.ErrorMessage {
 				name = 'prototypeDoesNotExistNotice'
 			}
